@@ -1,7 +1,6 @@
 import nodeFetch from 'node-fetch'
 import { createApi } from 'unsplash-js';
 import dotenv from 'dotenv';
-import { response } from 'express';
 
 dotenv.config();
 
@@ -70,7 +69,24 @@ export const getRelatedController = (req, res, next) => {
         collectionId: id
     })
     .then((response) => {
-        req.send(response);
+        res.send(response);
+    });
+}
+export const getAllTopics = (req, res, next) => {
+    unsplash.topics.list({
+        page: 1,
+        perPage: 50
+    }).then((response) => {
+        res.send(response);
+    });
+}
+
+export const getAllCollectios = (req, res, next) => {
+    unsplash.collections.list({
+        page: 1,
+        perPage: 50
+    }).then((response) => {
+        res.send(response);
     });
 }
 
