@@ -3,10 +3,15 @@ import dotenv from 'dotenv'
 /* import nodeFetch from 'node-fetch'
 import { createApi } from 'unsplash-js'; */
 import route from './route.js';
+import cors from 'cors';
+import bodyParser from 'body-parser';
 
-const app = express()
-dotenv.config()
-//global.fetch = nodeFetch;
+const app = express();
+dotenv.config();
+
+app.use(cors());
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
 const port = process.env.PORT || 5000;
 
 /* const unsplash = createApi({ 
